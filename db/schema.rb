@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151206085727) do
+ActiveRecord::Schema.define(version: 20151206214355) do
+
+  create_table "mapas", force: :cascade do |t|
+    t.string   "nome",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mapas", ["nome"], name: "index_mapas_on_nome", unique: true
+
+  create_table "rota", force: :cascade do |t|
+    t.integer  "mapa_id"
+    t.string   "origem",     null: false
+    t.string   "destino",    null: false
+    t.float    "distancia",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rota", ["mapa_id"], name: "index_rota_on_mapa_id"
+  add_index "rota", ["origem", "destino"], name: "index_rota_on_origem_and_destino", unique: true
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
