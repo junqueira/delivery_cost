@@ -1,0 +1,62 @@
+<h2>Mapa</h2>
+<p>
+  <strong>Nome:</strong>
+  <%= @mapa.nome %>
+</p>
+
+<% unless @mapa.rotas.blank? %>
+    <table>
+      <thead>
+      <tr>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Distancia</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @mapa.rotas.each do |rota| %>
+          <tr>
+            <td><%= rota.origem %></td>
+            <td><%= rota.destino %></td>
+            <td><%= rota.distancia %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <hr/>
+    <h2>Menor caminho</h2>
+
+    <%= form_tag buscar_mapa_path, method: :get, remote: true do %>
+        <p>
+          <%= label_tag :origem %>:
+          <%= text_field_tag :origem, params[:origem] %>
+          <%= label_tag :destino %>:
+          <%= text_field_tag :destino, params[:destino] %>
+          <%= label_tag :autonomia %>:
+          <%= number_field_tag :autonomia, params[:autonomia], step: 0.01, min: 1 %>
+          <%= label_tag :combustivel %>:
+          <%= number_field_tag :combustivel, params[:combustivel], step: 0.01, min: 1 %>
+
+          <%= button_tag 'Buscar', name: nil %>
+        </p>
+    <% end %>
+    <table id="menor-caminho" style="display: none;">
+      <thead>
+      <tr>
+        <th>Origem</th>
+        <th>Destino</th>
+        <th>Menor caminho</th>
+        <th>Distancia</th>
+        <th>Custo do combustível</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      </tbody>
+    </table>
+<% end %>
+
+<%= link_to 'Editar', edit_mapa_path(@mapa) %> |
+<%= link_to 'Voltar', mapas_path %>

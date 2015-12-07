@@ -1,0 +1,7 @@
+<tr>
+  <td><%= params[:origem] %></td>
+  <td><%= params[:destino] %></td>
+  <td><%= @resposta[:caminho].is_a?(Array) ? @resposta[:caminho].join(', ') : @resposta[:caminho] %></td>
+  <td><%= @resposta[:distancia] %> km</td>
+  <td><%= number_to_currency(@resposta[:custo]) %></td>
+</tr>
