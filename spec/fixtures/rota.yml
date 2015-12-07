@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mapa_id: 1
+  origem: A
+  destino: B
+  distancia: 10
+
+two:
+  mapa_id: 1
+  origem: B
+  destino: D
+  distancia: 15
