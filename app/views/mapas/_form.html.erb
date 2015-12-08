@@ -1,0 +1,28 @@
+<%= form_for(@mapa) do |f| %>
+    <% if @mapa.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@mapa.errors.count, "error") %> prohibited this mapa from being saved:</h2>
+
+          <ul>
+            <% @mapa.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :nome %><br>
+      <%= f.text_field :nome %>
+    </div>
+
+    <%= f.fields_for :rotas do |builder| %>
+        <%= render 'rota_fields', f: builder %>
+    <% end %>
+
+    <%= link_to_add_fields "Adicionar rota", f, :rotas %>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
